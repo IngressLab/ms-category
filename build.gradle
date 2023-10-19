@@ -1,0 +1,46 @@
+    plugins {
+    id 'java'
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$dependencyManagementVersion"
+    id 'groovy'
+}
+
+group = 'az.ingress'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = '17'
+}
+
+jar {
+    archiveBaseName = 'ms-category'
+    archiveVersion = "$version"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.liquibase:liquibase-core'
+    implementation "org.springdoc:springdoc-openapi-ui:$openApiVersion"
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.apache.groovy', name: 'groovy', version: "$groovyVersion"
+    testImplementation group: 'org.spockframework', name: 'spock-spring', version: "$spockVersion"
+    testImplementation "io.github.benas:random-beans:$randomBeansVersion"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
