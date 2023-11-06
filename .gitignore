@@ -1,9 +1,12 @@
 HELP.md
 .gradle
+gradlew.bat
+.jpb
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+application-local.yml
 
 ### STS ###
 .apt_generated
